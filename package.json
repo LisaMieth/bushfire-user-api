@@ -1,0 +1,33 @@
+{
+  "name": "bushfire_user_api",
+  "version": "1.0.0",
+  "description": "User management for bushfire API",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon js/server.js --exec babel-node --presets stage-2",
+    "lint": "eslint . --ext js"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "mongodb": "^2.2.31"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.0.0",
+    "babel-eslint": "^7.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-plugin-transform-class-properties": "^6.6.0",
+    "babel-plugin-transform-es2015-block-scoping": "^6.7.1",
+    "babel-plugin-transform-object-assign": "^6.5.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-2": "^6.0.0",
+    "babel-register": "^6.7.2",
+    "eslint": "^4.0.0",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^1.16.0"
+  },
+"author": "Lisa Mieth",
+  "license": "ISC"
+}
