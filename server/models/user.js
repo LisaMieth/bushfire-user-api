@@ -15,6 +15,7 @@ const UserSchema = new Schema({
     minlength: 1,
     unique: true,
     validate: {
+      isAsync: false,
       validator: validator.isEmail,
       message: '{VALUE} is not a valid email',
     },
@@ -49,6 +50,7 @@ const UserSchema = new Schema({
   },
 });
 
+// Instance methods
 UserSchema.methods.toJSON = function () {
   const user = this;
   const userObject = user.toObject();
@@ -64,6 +66,25 @@ UserSchema.methods.generateAuthToken = function () {
 
   user.tokens.push({ access, token });
   return user.save().then(() => token);
+};
+
+// Model methods
+UserSchema.statics.findByToken = function (token) {
+  const User = this;
+  let decoded;
+
+  try {
+    decoded = jwt.verify(token, 'abc123');
+  }
+  catch (e) {
+    return Promise.reject();
+  }
+
+  return User.findOne({
+    _id: decoded._id,
+    'tokens.token': token,
+    'tokens.access': 'auth',
+  });
 };
 
 const User = mongoose.model('User', UserSchema);
