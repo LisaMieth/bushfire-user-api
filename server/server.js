@@ -1,7 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-import { mongoose } from './db/mongoose';
 import User from './models/user';
 
 const port = 3000;
@@ -13,11 +12,15 @@ app.post('/users', (req, res) => {
   const user = new User({
     name: req.body.name,
     email: req.body.email,
-    location: req.body.location,
+    password: req.body.password,
+    suburb: req.body.suburb,
+    state: req.body.state.toUpperCase(),
+    importantOnly: req.body.importantOnly,
   });
 
   user.save()
-    .then(doc => res.send(doc))
+    .then(() => user.generateAuthToken())
+    .then(token => res.header('x-auth', token).send(user))
     .catch(e => res.status(400).send(e));
 });
 

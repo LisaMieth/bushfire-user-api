@@ -10,8 +10,10 @@
   "dependencies": {
     "body-parser": "1.18.2",
     "express": "^4.15.2",
+    "jsonwebtoken": "^8.0.1",
     "mongodb": "^2.2.31",
-    "mongoose": "4.11.12"
+    "mongoose": "4.11.12",
+    "validator": "^8.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
