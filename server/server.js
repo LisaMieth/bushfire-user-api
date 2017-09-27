@@ -1,3 +1,4 @@
+import './config/config';
 import express from 'express';
 import bodyParser from 'body-parser';
 
@@ -7,7 +8,7 @@ import authenticate from './middleware/authenticate';
 // eslint-disable-next-line no-unused-vars
 import mongoose from './db/mongoose';
 
-const port = 3000;
+const port = process.env.PORT;
 const app = express();
 
 app.use(bodyParser.json());
