@@ -26,13 +26,13 @@ describe('POST /users', () => {
         expect(res.body._id).toExist();
         expect(res.body.email).toBe(user.email);
       })
-      .end((err, res) => {
+      .end((err) => {
         if (err) return done(err);
 
         User.findOne({ email: user.email }).then(responseUser => {
           expect(responseUser).toExist();
-          expect(responseUser.password).toNotBe(user.password)
-          done();
+          expect(responseUser.password).toNotBe(user.password);
+          return done();
         }).catch(e => done(e));
       });
   });
